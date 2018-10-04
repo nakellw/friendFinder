@@ -188,7 +188,7 @@
         </div>
         <div class="modal-body">
           <h2 id="bestFriendName"></h2>
-          <img id="bestFriendImg" src=""
+          <img id="bestFriendImg" src="https://ak.picdn.net/assets/cms/97e1dd3f8a3ecb81356fe754a1a113f31b6dbfd4-stock-photo-photo-of-a-common-kingfisher-alcedo-atthis-adult-male-perched-on-a-lichen-covered-branch-107647640.jpg" 
             alt="" height="250" width="250">
         </div>
         <div class="modal-footer">
@@ -264,6 +264,7 @@
         // AJAX post the data to the friends API. 
         $.post("/api/friends", userData, function (data) {
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+          console.log("HI")
           console.log(data);
           $("#bestFriendName").text(data.name);
           $('#bestFriendImg').attr("src", data.photo);
@@ -273,10 +274,10 @@
         });
       }
       else {
-        alert("Please fill out all fields before submitting!");
+        alert("Please fill out all fields!");
       }
 
-      return false;
+     // return false;
     });
   </script>
 

@@ -32,42 +32,58 @@ module.exports = function(app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
-  app.post("/api/friends", function(req, res) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body-parser middleware
-    console.log(req);
-    console.log(friendData);
-      friendData.push(req.body);
-      res.json(true);
-  });
+  
+
 
   app.post("/api/friends", function(req, res) {
     // console.log(res);
-    var newFriend = req.body;
-    var newFriendScores=newFriend.scores;
-    var totalDifference =0;
-    var allDifferences = []; 
-    for(var i=0;i<friendsData.length;i++){
-      console.log(friendsData[i].name);
-    //	totalDifference = 0;
-    // We then loop through all the scores of each friend
-    for (var j=0; j<10; j++){
-      // this adds the numerical answers of each friend to the total difference; then uses the absolute value to determine the difference between the two (absolute value is used so that 5-3 and 3-5 both equal 2)
-      totalDifference += Math.abs(friendsData[i].scores[j] - newFriend.scores[j]);
-    }
+    // var newFriend = req.body;
+    // var newFriendScores=newFriend.scores;
+    // var totalDifference =0;
+    // var allDifferences = []; 
+    // for(var i=0;i<friendData.length;i++){
+    //   console.log(friendData[i].name);
+    // //	totalDifference = 0;
+    // // We then loop through all the scores of each friend
+    // for (var j=0; j<10; j++){
+    //   // this adds the numerical answers of each friend to the total difference; then uses the absolute value to determine the difference between the two (absolute value is used so that 5-3 and 3-5 both equal 2)
+    //   totalDifference += Math.abs(friendData[i].scores[j] - newFriend.scores[j]);
+    // }
     
-    // each total difference, for each potential friend, is pushed into the allDifferences array 
-    allDifferences.push(totalDifference);
-    // total difference is reset back to zero
-    totalDifference = 0;
-    }
+    // // each total difference, for each potential friend, is pushed into the allDifferences array 
+    // allDifferences.push(totalDifference);
+    // // total difference is reset back to zero
+    // totalDifference = 0;
+    // }
     
-    //best match will give the smallest values 
-    var bestMatch = friendsData[allDifferences.indexOf(Math.min.apply(null, allDifferences))];
+    // //best match will give the smallest values 
+    // var bestMatch = friendData[allDifferences.indexOf(Math.min.apply(null, allDifferences))];
     
-    res.send(bestMatch);
-    console.log(bestMatch);
+    // res.send(bestMatch);
+    // console.log(bestMatch);
     // newFriend.push(friends);
+    var newFriend = req.body;
+var newFriendScores=newFriend.scores;
+var totalDifference =0;
+var allDifferences = []; 
+for(var i=0;i<friendData.length;i++){
+	console.log(friendData[i].name);[]
+//	totalDifference = 0;
+// We then loop through all the scores of each friend
+for (var j=0; j<10; j++){
+	// this adds the numerical answers of each friend to the total difference; then uses the absolute value to determine the difference between the two (absolute value is used so that 5-3 and 3-5 both equal 2)
+	totalDifference += Math.abs(friendData[i].scores[j] - newFriend.scores[j]);
+}
+
+// each total difference, for each potential friend, is pushed into the allDifferences array 
+allDifferences.push(totalDifference);
+// total difference is reset back to zero
+totalDifference = 0;
+}
+
+//best match will give the smallest values 
+var bestMatch = friendData[allDifferences.indexOf(Math.min.apply(null, allDifferences))];
+console.log(bestMatch)
+res.send(bestMatch);
     });
     };
